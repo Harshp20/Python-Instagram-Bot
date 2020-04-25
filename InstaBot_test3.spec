@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['InstaBot_test3.py'],
-             pathex=['C:\\Users\\harsh\\Desktop\\InstaBot_Beta'],
+             pathex=['C:\\Users\\harsh\\Desktop\\gitHub Repositories\\InstaBot_Beta\\InstagramBot_Beta'],
              binaries=[],
              datas=[],
              hiddenimports=[],
