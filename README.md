@@ -11,7 +11,7 @@ This is a robust and a powerful fully featured Instagram Bot and Tool that can b
 5. Supports wait time for 2-Factor Authentication enabled accounts.
 
 ## NOTE:
-This program will prompt the user to enter their username and password. During password entry the user will not see any letters being typed but are input invisibly. This is just for security purposes so that the bitch next to you does not see your password :)
+The Bot will prompt the user to enter their username and password. During password entry the user will not see any letters being typed but are input invisibly. This is just for security purposes so that the bitch next to you does not see your password :)
 
 ## Prerequistes for Executable
 Microsoft Windows Operating System
