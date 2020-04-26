@@ -10,17 +10,6 @@ from random import randint
 #from tkinter import *
 from playsound import playsound
 
-
-'''root= Tk()
-root.title("InstaBot")
-root.geometry("500x500+450+200")
-
-my_img= ImageTk.PhotoImage(Image.open('landscape_window_BLur.jpg'))
-label1= Label(root, image=my_img)
-label1.place( relwidth=1, relheight=1)
-
-root.iconbitmap('Icon.ico') ##ICON'''
-
 new_list=[]
 class Bot:
     def __init__(self):
@@ -36,8 +25,8 @@ class Bot:
         ch= input("\nDo you have 2-Factor Authentication enabled on you account? [y/n]: ")
         if ch=='y':
             print('\nPlease keep your phone handy...The program will wait for 2-Factor Authentication after loggin in. Just type in the code and hit "Confirm"...')
-            self.username = str(input("\nEnter your username: "))    # usernameEntry.get()
-            self.password = getpass.getpass()    # passwordEntry.get()
+            self.username = str(input("\nEnter your username: "))    
+            self.password = getpass.getpass()  
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
             time.sleep(4)
@@ -51,14 +40,15 @@ class Bot:
             
         else:
             print('\nOkay cool...')
-            self.username = str(input("\nEnter your username: "))    # usernameEntry.get()
-            self.password = getpass.getpass()    # passwordEntry.get()
+            self.username = str(input("\nEnter your username: "))   
+            self.password = getpass.getpass()  
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
             time.sleep(4)
             self.driver.find_element_by_xpath('//input[@name= \"username\"]').send_keys(self.username)
             self.driver.find_element_by_xpath('//input[@name= \"password\"]').send_keys(self.password)
             self.driver.find_element_by_xpath('//button[@type= "submit"]').click()
+            time.sleep(4)
         
         try:
             self.driver.find_element_by_xpath('//button[contains(text(), "Not Now")]').click()
@@ -129,7 +119,7 @@ class Bot:
     def start_follow(self):
         self.go_to_my_profile()
         time.sleep(4)
-        keyword= 'nahichahiyeji'#input("Enter a profile username: ")
+        keyword= input("Enter a profile username: ")
         print('\n***Starting Follow Procedure***\n')
         print('\nFollowing 35 Users every hour for 5 hours straight [Safe Following rate]')
         total_followed= 0
@@ -158,7 +148,7 @@ class Bot:
                 time.sleep(3)
                 self.driver.find_element_by_xpath('//a[@href="/{}/followers/"]'.format(keyword)).click()
                 time.sleep(2)
-                scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]') #/html/body/div[4]/div/div[2]
+                scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]') 
                 to_follow_list= scrollbox.find_elements_by_tag_name('a')
                 to_follow_list= [x.text for x in to_follow_list]
                 [to_follow_list.remove(x) for x in to_follow_list if x=='']
@@ -253,7 +243,6 @@ class Bot:
         print('\n***Getting Following list***')
         print("**Unfollowing 35 people every hour**")
         time.sleep(randint(1,2))
-        #scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]')
         
         try:
             contents= self.driver.find_elements_by_xpath('//a[@href="/{}/following/"]'.format(self.username))
@@ -288,7 +277,7 @@ class Bot:
                     self.driver.find_element_by_xpath('//a[@href= "/{}/following/"]'.format(self.username)).click() #Click User's Following button
                 for x in range(lower_lim, upper_lim):
                     time.sleep(2)
-                    #self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]/ul/div/li[{}]/div/div[3]/button'.format(x)).click()
+                    
                     try:
                         self.driver.find_element_by_xpath('//button[contains(text(), "Following")]').click() #Click Following button
                     except KeyboardInterrupt:
@@ -304,7 +293,7 @@ class Bot:
                             self.driver.find_element_by_xpath('//button[contains(text(), "Following")]').click() #Click Following button
                         except exceptions.NoSuchElementException:
                             continue
-                    #time.sleep(randint(1,2))    
+                     
                     try:
                         self.driver.find_element_by_xpath('//button[contains(text(), "Unfollow")]').click() #Click Final Unfollow button
                     except KeyboardInterrupt:
@@ -331,9 +320,8 @@ class Bot:
                             time.sleep(4)
                             self.logout()
                         except Exception:
-                            continue
-                        
-                    # FIX THIS!!print( "Unfollowed " + self.driver.find_element(By.XPATH, '/html/body/div[4]/div/div[2]/ul/div/li[{}]/div/div[1]/div[2]/div[1]'.format(x)).text)
+                            continue    
+                    
                     unfollow_count+=1
                     time.sleep(randint(1,3))
                     
@@ -345,7 +333,6 @@ class Bot:
                 time.sleep(randint(1,2))
                 self.driver.refresh()
                 time.sleep(3)
-                #self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", scrollbox)# [WORKED]
             
             total_unfollowed+= unfollow_count
             
@@ -415,65 +402,3 @@ while(True):
         print("Thank You! | Exiting Now")
         obj.close_browser()
         break
-
-'''frame= Frame(root, bg='blue', bd='10')
-frame.place(relx=0.150, rely=0.150, relwidth=0.7, relheight=0.7)
-
-my_img2= ImageTk.PhotoImage(Image.open('landscape_window.jpg'))
-label2= Label(frame, image=my_img2)
-label2.place( relwidth=1, relheight=1)
-
-loginButton= Button(frame, text="Log In", padx='20', pady="5", fg='white', bg="red", command=obj.login)
-loginButton.place(anchor=CENTER, rely=0.22, relx=0.5)
-
-label1= Label(root, text=" ")
-label1.grid(row=3, columnspan=2)
-
-usernameEntry= Entry(frame, width=30, borderwidth=2)
-usernameEntry.place(anchor=CENTER, relx=0.5, rely=0.04)
-usernameEntry.insert(0, "Username")
-
-passwordEntry= Entry(frame, width=30, borderwidth=2, show='*')
-passwordEntry.place(anchor=CENTER, relx=0.5, rely=0.12)
-passwordEntry.insert(0, "Password")
-
-############### LEFT SIDE BUTTONS
-myProfile= Button(frame, text="My Profile", padx='15', pady="5",  fg='white', bg="red", command=obj.go_to_my_profile)
-myProfile.place(anchor=W, rely=0.4, relx=0.03)
-
-startUnfollowButton= Button(frame, text="Unfollow", padx='18', pady="5",  fg='white', bg="red", command=obj.start_unfollow)
-startUnfollowButton.place(anchor=W, rely=0.51, relx=0.03)
-###################################
-
-############### RIGHT SIDE BUTTONS
-getListButton= Button(frame, text="Get Nonfollowers", padx='10', pady="5",  fg='white', bg="red", command=obj.get_unfollowers_list)
-getListButton.place(anchor=E, rely=0.4, relx=0.97)
-
-openBrowserButton= Button(frame, text="Open Chrome", padx='18', pady="5",  fg='white', bg="red", command=obj.open_chrome)
-openBrowserButton.place(anchor=E, rely=0.51, relx=0.97)
-
-
-####### CENTER BUTTONS
-logoutButton= Button(frame, text="Log Out", padx='34', pady="5", fg='white', bg="red", command=obj.logout)
-logoutButton.place(anchor=CENTER, rely=0.79, relx=0.5)
-
-exitButton= Button(frame, text="Exit", padx='15', pady="5",  fg='white', bg="red", command=obj.close_browser)
-exitButton.place(anchor=CENTER, rely=0.9, relx=0.5)
-
-
-###################################
-
-
-label1= Label(frame, text="")
-label1.grid(row=9, columnspan=2)
-
-
-########### AUTHOR NAME
-label2= Label(root, text="Author: Harsh Pradhan")
-label2.place(relx=0.5, rely=0.92, anchor=CENTER)
-
-########### Status Bar
-status_bar= Label(root, text='Declare Variables, Not War', bd=1.5, relief=SUNKEN, anchor=E)
-status_bar.place(relx=0.5, rely=0.975, anchor=CENTER)
-
-root.mainloop()'''
