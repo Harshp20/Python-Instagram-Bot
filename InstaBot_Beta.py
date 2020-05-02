@@ -17,10 +17,12 @@ class Bot:
         self.base_url = 'https://www.instagram.com/'
         self.driver.execute_script("alert('Please check your Application console window')")
     
+    
     def open_chrome(self):
         self.driver= webdriver.Chrome('chromedriver.exe')
         self.base_url = 'https://www.instagram.com/'
         
+
     def login(self):
         ch= input("\nDo you have 2-Factor Authentication enabled on you account? [y/n]: ")
         if ch=='y':
@@ -60,6 +62,7 @@ class Bot:
     def go_to_my_profile(self):
         self.driver.get(self.base_url + self.username)
         time.sleep(4)
+
 
     def get_unfollowers_list(self):
         self.go_to_my_profile()
@@ -237,7 +240,7 @@ class Bot:
 
     def raw_unfollow(self):
         self.go_to_my_profile()
-        
+ 
         #Getting following list
         print("\nLog:")
         print('\n***Getting Following list***')
@@ -325,7 +328,6 @@ class Bot:
                     unfollow_count+=1
                     time.sleep(randint(1,3))
                     
-
                 try:
                     self.driver.find_element_by_xpath('/html/body/div[4]/div/div[1]/div/div[2]/button').click() #Click the [x] button for followers
                 except exceptions.NoSuchElementException:
@@ -366,6 +368,7 @@ class Bot:
     def close_browser(self):
         self.driver.close()
         
+
 # Driver Code
 obj = Bot()
 while(True):
