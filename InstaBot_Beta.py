@@ -214,22 +214,25 @@ class Bot:
             for x in range(total_unfollow, i + total_unfollow):
                 self.driver.get('https://instagram.com/' + new_list[x])
                 time.sleep(3)  
-                
-                unfollow_button= self.driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button')
-                if len(unfollow_button) > 0:
-                    unfollow_button[0].click()
-                    self.driver.find_element_by_xpath('//button[contains(text(), "Unfollow")]').click()
-                    print('Unfollowed ' + new_list[x])
-                    unfollow_count+=1
-                    time.sleep(1)
-                else:
-                    unfollow_button= self.driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/button')
+
+                ch= self.driver.find_element(By.XPATH, '//a[@href= "/{}/followers/"]'.format(new_list[x])).text
+                ch= ch.split(" ")
+                if 'm' not in ch[0] and 'k' not in ch[0] and ',' not in ch[0]:
+                    unfollow_button= self.driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button')
                     if len(unfollow_button) > 0:
                         unfollow_button[0].click()
                         self.driver.find_element_by_xpath('//button[contains(text(), "Unfollow")]').click()
                         print('Unfollowed ' + new_list[x])
                         unfollow_count+=1
                         time.sleep(1)
+                    else:
+                        unfollow_button= self.driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/button')
+                        if len(unfollow_button) > 0:
+                            unfollow_button[0].click()
+                            self.driver.find_element_by_xpath('//button[contains(text(), "Unfollow")]').click()
+                            print('Unfollowed ' + new_list[x])
+                            unfollow_count+=1
+                            time.sleep(1)
                     
             total_unfollow+=unfollow_count
 
