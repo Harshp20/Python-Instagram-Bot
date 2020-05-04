@@ -6,7 +6,7 @@ This is a robust and a powerful fully featured Instagram Bot and Tool that can b
 ## Features:
 1. Get Non-Followers - See who's not following you back.
 2. Unfollow People - Unfollows people that are not following you back. (35 people/hour for 5 hours) Note:- This feature will skip the celebrity and famous profiles.
-3. Raw Unfollow - Unfollows people reagrdless for of them follwoing you back or not. (35 people/hour for 5 hours)
+3. Raw Unfollow - Unfollows all people reagrdless for of them follwoing you back or not. (35 people/hour for 5 hours)
 4. Follow People - Follows people from the followers list of desired profiles for growth. (35 people/hour for 5 hours)
 5. Supports wait time for 2-Factor Authentication enabled accounts.
 
