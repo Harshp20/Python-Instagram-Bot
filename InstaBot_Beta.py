@@ -28,8 +28,7 @@ class Bot:
         if ch=='y':
             print('\nPlease keep your phone handy...The program will wait for 2-Factor Authentication after loggin in. Just type in the code and hit "Confirm"...')
             self.username = str(input("\nEnter your username: "))   
-            print("Enter your password: ")
-            self.password = getpass.getpass()  
+            self.password = getpass.getpass(prompt='Password (Hidden Entry): ')
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
             time.sleep(4)
@@ -44,8 +43,7 @@ class Bot:
         else:
             print('\nOkay cool...')
             self.username = str(input("\nEnter your username: "))   
-            print("Enter your password: ")
-            self.password = getpass.getpass()  
+            self.password = getpass.getpass(prompt='Password (Hidden Entry): ')
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
             time.sleep(4)
