@@ -27,7 +27,8 @@ class Bot:
         ch= input("\nDo you have 2-Factor Authentication enabled on you account? [y/n]: ")
         if ch=='y':
             print('\nPlease keep your phone handy...The program will wait for 2-Factor Authentication after loggin in. Just type in the code and hit "Confirm"...')
-            self.username = str(input("\nEnter your username: "))    
+            self.username = str(input("\nEnter your username: "))   
+            print("Enter your password: ")
             self.password = getpass.getpass()  
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
@@ -43,6 +44,7 @@ class Bot:
         else:
             print('\nOkay cool...')
             self.username = str(input("\nEnter your username: "))   
+            print("Enter your password: ")
             self.password = getpass.getpass()  
             print("\nCheck your browser...")
             self.driver.get(self.base_url)
@@ -233,9 +235,13 @@ class Bot:
 
             print('\nTotal Unfollowed this hour: ' + str(unfollow_count))
             print(datetime.now().strftime("%d-%m-%Y - %H:%M:%S"))
-            time.sleep(3600)
+            if y<4:
+                print('Next wave starts in 1 hour')
+                playsound('FaZe_Sway_ringtone.mp3')
+                time.sleep(3600)
         print("\nTotal Unfollowed this session: " + str(total_unfollow) + "\nTime of completion: " + datetime.now().strftime("%H:%M:%S") + " CONGRATULATIONS!!\n")
         self.go_to_my_profile()
+        playsound('FaZe_Sway_ringtone.mp3')
 
 
     def raw_unfollow(self):
