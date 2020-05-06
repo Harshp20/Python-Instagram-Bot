@@ -17,7 +17,8 @@ The Bot will prompt the user to enter their username and password. During passwo
 Microsoft Windows Operating System
 
 ## Troubleshooting
-If the executable doesn't work, the source .py file is available for you.
+1. If you are facing any problems executing the source code then consider upgrading all your python packages.
+2. If the executable doesn't work, the source .py file is available for you.
 
 ## Development
 If you think you can improve and add more functionality to this Bot then feel free to clone this repository and submit your changes.
