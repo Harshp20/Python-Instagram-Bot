@@ -14,7 +14,9 @@ This is a robust and a powerful fully featured Instagram Bot and Tool that can b
 The Bot will prompt the user to enter their username and password. During password entry the user will not see any letters being typed but are input invisibly. This is just for security purposes so that the bitch next to you does not see your password :)
 
 ## Prerequistes for Executable
-Microsoft Windows Operating System
+OS depends upon your choice.
+Use chromedriver according to your chrome version and OS that you are using.
+To check chrome version that you are using right now, search < chrome://version > in the google chrome search bar.
 
 ## Troubleshooting
 1. If you are facing any problems executing the source code then consider upgrading all your python packages.
