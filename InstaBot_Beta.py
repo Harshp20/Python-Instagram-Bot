@@ -150,14 +150,12 @@ class Bot:
             time.sleep(3)
             self.driver.find_element_by_xpath('//a[@href="/{}/followers/"]'.format(keyword)).click()
             time.sleep(2)
-            #################################
         
             scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]') 
             for x in range(2):
                 self.driver.execute_script('arguments[0].scrollTo(0, arguments[0].scrollHeight)', scrollbox)
                 time.sleep(1)
         
-            #################################
             to_follow_list= scrollbox.find_elements_by_tag_name('a')
             to_follow_list= [x.text for x in to_follow_list]
             [to_follow_list.remove(x) for x in to_follow_list if x=='']

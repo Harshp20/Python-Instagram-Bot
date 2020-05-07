@@ -28,6 +28,7 @@ http://jonathansoma.com/lede/foundations-2017/classes/more-scraping/selenium/
 2. Use chromedriver according to your chrome version and OS that you are using. Download from here https://chromedriver.chromium.org/downloads . To check chrome version that you are using right now, search < chrome://version > in the google chrome search bar.
 
 ## Troubleshooting
+1. If the Bot seems to be freezed, go to the Bot's console/terminal window and press any of the arrow keys.
 1. If the executable doesn't work, the source .py file is available for you.
 2. If you are facing any problems executing the source code then consider upgrading all your python packages. Upgrade your pip to the latest version using `python -m pip install --upgrade pip` and upgrade all your packages to latest versions using `pip install pip-upgrade-outdated`
 
