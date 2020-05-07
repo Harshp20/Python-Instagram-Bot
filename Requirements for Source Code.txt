@@ -1,3 +1,6 @@
 Libraries Required:
 Playsound
 Selenium
+
+Use chromedriver according to your chrome version and OS that you are using..
+To check chrome version that you are using right now, search < chrome://version > in the google chrome search bar.
