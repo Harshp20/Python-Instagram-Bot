@@ -129,60 +129,66 @@ class Bot:
         hours= 5
         for z in range(1, hours+1):
             followed_this_hour= 0
-            for y in range(5):
-                i= 7
-                self.driver.get(self.base_url + keyword) #In case input is a User
-                time.sleep(4)
-                try:
-                    self.driver.find_element_by_xpath('//button[contains(text(), "Follow")]').click()
-                except:
-                    pass
+            i=35
+            self.driver.get(self.base_url + keyword) #In case input is a User
+            time.sleep(4)
+            try:
+                self.driver.find_element_by_xpath('//button[contains(text(), "Follow")]').click()
+            except:
+                pass
+            time.sleep(1)
+
+            contents= self.driver.find_elements_by_xpath('//a[@href="/{}/followers/"]'.format(keyword))
+            contents= [x.text for x in contents]
+            contents= ''.join(contents)
+            contents= contents.split(' ')
+            if contents[0] == '0':
+                print("\nSORRY! There are no users to Follow | Exiting\n")
+                playsound('FaZe_Sway_ringtone.mp3')
+                return
+            
+            time.sleep(3)
+            self.driver.find_element_by_xpath('//a[@href="/{}/followers/"]'.format(keyword)).click()
+            time.sleep(2)
+            #################################
+        
+            scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]') 
+            for x in range(2):
+                self.driver.execute_script('arguments[0].scrollTo(0, arguments[0].scrollHeight)', scrollbox)
                 time.sleep(1)
+        
+            #################################
+            to_follow_list= scrollbox.find_elements_by_tag_name('a')
+            to_follow_list= [x.text for x in to_follow_list]
+            [to_follow_list.remove(x) for x in to_follow_list if x=='']
+            
+            print('\n')
+            print(to_follow_list)
+            print('\n')
 
-                contents= self.driver.find_elements_by_xpath('//a[@href="/{}/followers/"]'.format(keyword))
-                contents= [x.text for x in contents]
-                contents= ''.join(contents)
-                contents= contents.split(' ')
-                if contents[0] == '0':
-                    print("\nSORRY! There are no users to Follow | Exiting\n")
-                    playsound('FaZe_Sway_ringtone.mp3')
-                    return
-                
-                time.sleep(3)
-                self.driver.find_element_by_xpath('//a[@href="/{}/followers/"]'.format(keyword)).click()
-                time.sleep(2)
-                scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]') 
-                to_follow_list= scrollbox.find_elements_by_tag_name('a')
-                to_follow_list= [x.text for x in to_follow_list]
-                [to_follow_list.remove(x) for x in to_follow_list if x=='']
-                
-                print("\n")
-                print(to_follow_list)
-                print("\n" + str(len(to_follow_list)))
+            follow_count=0
+            for x in range(0,i):
+                if i>len(to_follow_list):
+                    i= len(to_follow_list)
+                self.driver.get('https://instagram.com/' + to_follow_list[x])
+                time.sleep(4)
+                follow_button= self.driver.find_elements_by_xpath('//button[contains(text(), "Follow")]')
+                if len(follow_button) > 0:
+                    follow_button[0].click()
+                    time.sleep(randint(2,3))
+                    follow_count+=1
+                    print('Followed ' + to_follow_list[x])
+                else:
+                    continue
 
-                follow_count=0
-                for x in range(0,i):
-                    if i>len(to_follow_list):
-                        i= len(to_follow_list)
-                    self.driver.get('https://instagram.com/' + to_follow_list[x])
-                    time.sleep(4)
-                    follow_button= self.driver.find_elements_by_xpath('//button[contains(text(), "Follow")]')
-                    if len(follow_button) > 0:
-                        follow_button[0].click()
-                        time.sleep(randint(2,3))
-                        follow_count+=1
-                        print('Followed ' + to_follow_list[x])
-                    else:
-                        continue
-                followed_this_hour+= follow_count
-            print("\nTotal followed this hour: " + str(followed_this_hour) + " at " + datetime.now().strftime("%H:%M:%S"))
+            print("\nTotal followed this hour: " + str(follow_count) + " at " + datetime.now().strftime("%H:%M:%S"))
             print("\nTime remaining to completion: " + str(hours-z) + " hours")
-            total_followed+= followed_this_hour
+            total_followed+= follow_count
             if z<5:
                 playsound('FaZe_Sway_ringtone.mp3')
-                time.sleep(4) #3600
+                time.sleep(3600)
 
-        print("\nTotal Unfollowed this session: " + str(total_followed) + "\nTime of completion: " + datetime.now().strftime("%H:%M:%S") + " CONGRATULATIONS!!")
+        print("\nTotal Followed this session: " + str(total_followed) + "\nTime of completion: " + datetime.now().strftime("%H:%M:%S") + " CONGRATULATIONS!!")
         self.go_to_my_profile()
         playsound('FaZe_Sway_ringtone.mp3')
 

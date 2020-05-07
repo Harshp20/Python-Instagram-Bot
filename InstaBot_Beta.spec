@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['InstaBot_Beta.py'],
-             pathex=['C:\\Users\\harsh\\Desktop\\gitHub Repositories\\InstaBot_Beta\\InstagramBot_Beta'],
+             pathex=['C:\\Users\\harsh\\Desktop\\gitHub Repositories\\Instagram_Bot\\Instagram_Bot'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -30,4 +30,4 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True , icon='Icon.ico')
+          console=True , icon='Icon_Instagram.ico')
