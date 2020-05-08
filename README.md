@@ -1,4 +1,9 @@
 # Instagram Bot
+#Banner
+print(''' 
+Declare Variables, Not War
+                        [Coded By Harsh Pradhan]
+''')
 
 ## Description
 This is a robust and a powerful fully featured Instagram Bot and Tool that can be used for automation of boring & tedious tasks on Instagram.
