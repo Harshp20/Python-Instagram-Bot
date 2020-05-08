@@ -1,4 +1,4 @@
-# InstagramBot - Beta
+# Instagram Bot
 
 ## Description
 This is a robust and a powerful fully featured Instagram Bot and Tool that can be used for automation of boring & tedious tasks on Instagram.
