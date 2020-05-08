@@ -6,15 +6,7 @@ import getpass
 from datetime import datetime
 from selenium.webdriver.common.by import By
 from random import randint
-#from PIL import ImageTk, Image
-#from tkinter import *
 from playsound import playsound
-
-#Banner
-print(''' 
-                        Declare Variables, Not War
-                        [Coded By Harsh Pradhan]
-''')
 
 new_list=[]
 class Bot:
