@@ -12,6 +12,7 @@ new_list=[]
 class Bot:
     def __init__(self):
         self.driver= webdriver.Chrome('chromedriver.exe')
+        #for linux and mac ,use-> self.driver= webdriver.Chrome('chromedriver')
         self.base_url = 'https://www.instagram.com/'
         self.driver.execute_script("alert('Please check your Application console window')")
     
