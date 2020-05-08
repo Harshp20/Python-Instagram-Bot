@@ -10,6 +10,12 @@ from random import randint
 #from tkinter import *
 from playsound import playsound
 
+#Banner
+print(''' 
+                        Declare Variables, Not War
+                        [Coded By Harsh Pradhan]
+''')
+
 new_list=[]
 class Bot:
     def __init__(self):

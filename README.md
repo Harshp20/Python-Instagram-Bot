@@ -29,8 +29,8 @@ http://jonathansoma.com/lede/foundations-2017/classes/more-scraping/selenium/
 
 ## Troubleshooting
 1. If the Bot seems to be freezed, go to the Bot's console/terminal window and press any of the arrow keys.
-1. If the executable doesn't work, the source .py file is available for you.
-2. If you are facing any problems executing the source code then consider upgrading all your python packages. Upgrade your pip to the latest version using `python -m pip install --upgrade pip` and upgrade all your packages to latest versions using `pip install pip-upgrade-outdated`
+2. If the executable doesn't work, the source .py file is available for you.
+3. If you are facing any problems executing the source code then consider upgrading all your python packages. Upgrade your pip to the latest version using `python -m pip install --upgrade pip` and upgrade all your packages to latest versions using `pip install pip-upgrade-outdated`
 
 ## Development
 If you think you can improve and add more functionality to this Bot then feel free to clone this repository and submit your changes.
