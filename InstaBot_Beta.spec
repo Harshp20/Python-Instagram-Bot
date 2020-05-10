@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['InstaBot_Beta.py'],
+a = Analysis(['InstaBot_beta.py'],
              pathex=['C:\\Users\\harsh\\Desktop\\gitHub Repositories\\Instagram_Bot\\Instagram_Bot'],
              binaries=[],
              datas=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='InstaBot_Beta',
+          name='InstaBot_beta',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

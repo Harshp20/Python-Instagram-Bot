@@ -8,12 +8,15 @@ from selenium.webdriver.common.by import By
 from random import randint
 from playsound import playsound
 
+non_story_viewers=[]
 new_list=[]
+
 class Bot:
     def __init__(self):
         self.driver= webdriver.Chrome('chromedriver.exe')
         self.base_url = 'https://www.instagram.com/'
-        self.driver.execute_script("alert('Please check your Application console window')")
+        self.driver.execute_script("alert('Please check your Application console window. Hit Ok before continuing or the Bot will not work.')")
+        self.login()
     
     
     def open_chrome(self):
@@ -22,7 +25,7 @@ class Bot:
         
 
     def login(self):
-        ch= input("\nDo you have 2-Factor Authentication enabled on you account? [y/n]: ")
+        ch= input("\nDo you have 2-Factor Authentication enabled on your account? [y/n]: ")
         if ch=='y':
             print('\nPlease keep your phone handy...The program will wait for 2-Factor Authentication after loggin in. Just type in the code and hit "Confirm"...')
             self.username = str(input("\nEnter your username: "))   
@@ -61,8 +64,7 @@ class Bot:
         self.driver.get(self.base_url + self.username)
         time.sleep(4)
 
-
-    def get_unfollowers_list(self):
+    def get_followers_list(self):
         self.go_to_my_profile()
         #Getting Followers list below
         print('\n***Getting Followers list***')
@@ -87,7 +89,11 @@ class Bot:
         except Exception:
             self.driver.refresh()
             time.sleep(4)
+        return followers_names
 
+
+    def get_following_list(self):
+        self.go_to_my_profile()
         #Getting Following list below
         print('***Getting Following list***')
         self.driver.find_element_by_xpath('//a[@href= "/{}/following/"]'.format(self.username)).click()
@@ -105,16 +111,22 @@ class Bot:
         following_links= scrollbox.find_elements_by_tag_name('a')
         following_names= [name.text for name in following_links]
         [following_names.remove(x) for x in following_names if x=='']
+        return following_names
 
-        #Compare Followers list with Following list
+
+    def get_unfollowers(self):
+        followers_names= self.get_followers_list()  #Getting Followers list 
+        following_names= self.get_following_list()  #Getting Following list 
+  
+        #Getting Non-followers
         for x in following_names:
             if not x in followers_names:
                 new_list.append(x)                
                 print(x)
         
-        print('Followers: ' + str(len(followers_names)), end='')
+        print('\nFollowers: ' + str(len(followers_names)), end='')
         print('    Following: ' + str(len(following_names)))
-        print('Number of Non-followers: ' + str(len(new_list)) + '\n')
+        print('\nNumber of Non-followers: ' + str(len(new_list)) + '\n')
 
 
     def start_follow(self):
@@ -190,10 +202,19 @@ class Bot:
 
 
     def start_unfollow(self):
-        if len(new_list)==0:
-            print("There are no users to Unfollow | Exiting\n")
-            return
+        exclude_list_decision= input("Do you want to create Exclusions list to prevent me from Unfollowing your friends?[y/n]: ")
+        if exclude_list_decision.lower()=='y':
+            self.create_exclusions_list()
 
+        if len(new_list)==0:
+            self.get_unfollowers()
+
+        f= open('exclusions.txt', 'r')
+        contents= f.read()
+        contents= contents.split(' ')
+        contents= [y for y in contents if y!='']
+        f.close()
+        
         total_unfollow=0
         for y in range(5):
             i=25
@@ -201,7 +222,7 @@ class Bot:
             print('***Starting Unfollow Procedure***\n')
             
             if len(new_list)== total_unfollow:
-                print("There are no users left to Unfollow | Exiting\n")
+                print("\nThere are no users left to Unfollow | Exiting\n")
                 return
             
             if len(new_list)< i:
@@ -212,11 +233,15 @@ class Bot:
                 print(i)
 
             for x in range(total_unfollow, i + total_unfollow):
-                self.driver.get('https://instagram.com/' + new_list[x])
+                self.driver.get(self.base_url + new_list[x])
                 time.sleep(3)  
 
                 ch= self.driver.find_element(By.XPATH, '//a[@href= "/{}/followers/"]'.format(new_list[x])).text
                 ch= ch.split(" ")
+                    
+                if new_list[x] in contents:
+                    continue
+
                 if 'm' not in ch[0] and 'k' not in ch[0] and ',' not in ch[0]:
                     unfollow_button= self.driver.find_elements_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/div[2]/span/span[1]/button')
                     if len(unfollow_button) > 0:
@@ -364,14 +389,70 @@ class Bot:
         time.sleep(3)
         self.driver.refresh()
 
+    def check_story_non_viewers(self):
+        self.go_to_my_profile()
+        self.driver.find_element_by_xpath('//img[@alt="{}\'s profile picture"]'.format(self.username)).click()
+        time.sleep(2)
+        seen_by= self.driver.find_element_by_xpath('//span[contains(text(), "Seen by")]')
+        print('\nYour story is ' + seen_by.text)
+        time.sleep(1)
+        self.driver.find_element_by_xpath('//span[contains(text(), "Seen by")]').click()
+        time.sleep(1)
+        ###########################
+        try:
+            scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div/div[2]/div') #/html/body/div[4]/div/div/div[2]/div
+            last_height, curr_height= 0, 1
+            while last_height!= curr_height:
+                last_height= curr_height
+                time.sleep(1)
+                curr_height= self.driver.execute_script("""arguments[0].scrollTo(0, arguments[0].scrollHeight);
+                return arguments[0].scrollHeight;
+                """, scrollbox
+                )
+                time.sleep(1)
+        except Exception:
+            pass
+        
+        viewers= self.driver.find_elements_by_tag_name('a')
+        viewers= [x.get_attribute('title') for x in viewers]
+        viewers= [x for x in viewers if x!=self.username and x!='']
+        print('\n')
+        print(viewers)
+        print('\n' + str(len(viewers)) + ' viewers')
+        self.get_unfollowers_list()
+        time.sleep(1)
+        non_viewers= []
+        [non_viewers.append(x) for x in non_story_viewers if x not in viewers]
+        print('\n' + str(len(non_viewers)) + ' people from your followers didn\'t view your story')
+        print('\nNon-viewers are :')
+        [print(x) for x in non_viewers]
+
+
+    def create_exclusions_list(self):
+        print("\nKeep your Browser window besides this...")
+        print('\nStarting...')
+        if len(new_list)==0:
+            self.get_unfollowers()
+
+        f= open('exclusions.txt', 'a+')
+        for x in new_list:
+            self.driver.get(self.base_url + x)
+            #time.sleep(4)
+            choice= input("\nExclude {} ? [y/n]: ".format(x))
+            if choice.lower()=='y':
+                f.write(x + ' ')
+        f.close()
+        print('\nExclusions registered. Do not delete the "exclusions.txt file in this folder."... You may Unfollow safely now.')
+
 
     def logout(self):
         self.driver.get(self.base_url + self.username)
         time.sleep(2)
         self.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/div/header/section/div[1]/div/button').click()
-        time.sleep(2)
+        time.sleep(1)
         self.driver.find_element_by_xpath('//button[contains(text(), "Log Out")]').click()
-        time.sleep(4)
+        time.sleep(1)
+        self.driver.find_element_by_xpath('//button[contains(text(), "Log Out")]').click()
     
     
     def close_browser(self):
@@ -379,38 +460,38 @@ class Bot:
         
 
 # Driver Code
-obj = Bot()
-while(True):
-    choice= input("\n\n1. Log In\n2. Navigate to Your Profile\n3. Check who is not following you back\n4. Unfollow Non-followers\n5. Follow People\n6. Raw Unfollow\n7. Log Out\n8. Open Browser\n0. Exit\n\nEnter numbers for the following features: ")
-    
-    if choice=='1':
-        print('Please wait...1')
-        obj.login()
-    if choice=='2':
-        print('Please wait...1')
-        obj.go_to_my_profile()  #Navigate to User Profile
-    if choice=='3': 
-        print('Please wait...1')
-        obj.get_unfollowers_list()  #Self Explanatory
-    if choice=='4': 
-        print('Please wait...1')
-        obj.start_unfollow() #Haha! Again self explanatory
-    if choice=='5': 
-        print('Please wait...1')
-        obj.start_follow()
-    if choice=='6': 
-        print('Please wait...1')
-        obj.raw_unfollow()
-    if choice=='7': 
-        print('Please wait...1')
-        obj.logout()
-    if choice=='8': 
-        print('Please wait...1')
-        obj.close_browser()
-    if choice=='9': 
-        print('Please wait...1')
-        obj.open_chrome()
-    if choice=='0':
-        print("Thank You! | Exiting Now")
-        obj.close_browser()
-        break
+try:
+    obj = Bot()
+    while(True):
+        choice= input("\n\n1. Navigate to Your Profile\n2. Check who is not following you back\n3. Create Exclusions List\n4. Unfollow Non-followers\n5. Follow People\n6. Raw Unfollow\n7. Log Out\n0. Exit\n\nEnter numbers for the following features: ")
+            
+        if choice=='1':
+            print('Please wait...1')
+            obj.go_to_my_profile()  #Navigate to User Profile
+        if choice=='2': 
+            print('Please wait...1')
+            obj.get_unfollowers()  #Self Explanatory
+        if choice=='3': 
+            print('Please wait...1')
+            obj.create_exclusions_list()
+        if choice=='4': 
+            print('Please wait...1')
+            obj.start_unfollow() #Haha! Again self explanatory
+        if choice=='5': 
+            print('Please wait...1')
+            obj.start_follow()
+        if choice=='6': 
+            print('Please wait...1')
+            obj.raw_unfollow()
+        if choice=='7': 
+            print('Please wait...1')
+            obj.logout()
+        if choice=='0':
+            print("Thank You! | Exiting Now")
+            try:
+                obj.close_browser()
+            except Exception:
+                break
+            break
+except KeyboardInterrupt:
+    print('\n\n****************Process Interrupted by User******************\n')
