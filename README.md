@@ -1,7 +1,22 @@
-# Instagram Bot
-
-## Description
-This is a robust and a powerful fully featured Instagram Bot and Tool that can be used for automation of boring & tedious tasks on Instagram.
+<h1 align="center">Instagram Bot</h1>
+<p align="center">
+<img src="https://imgur.com/nu9qFI0.png" width='200'>
+  <h3 align='center'>I am a robust, powerful and fully featured Instagram Bot that automates boring & tedious tasks on Instagram for you</h3>
+</p>
+  <p align="center">⭐️ Star it | 🔱 Fork it on GitHub </p>
+  <p align="center">
+    <a href="https://github.com/timgrossmann/InstaPy/blob/master/LICENSE">
+      <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" />
+    </a>
+    <a href="https://github.com/SeleniumHQ/selenium">
+      <img src="https://img.shields.io/badge/built%20with-Selenium-yellow" />
+    </a>
+    <a href="https://www.python.org/">
+    	<img src="https://img.shields.io/badge/built%20with-Python3-blueviolet" />
+    </a>
+      <img src='https://img.shields.io/badge/112-Stars-brightgreen'>
+  </p>
+<p align='center'><img  src='https://img.shields.io/badge/Coded%20By-Harsh%20Pradhan-red'></p>
 
 ## Features:
 1. Get Non-Followers - See who's not following you back.
