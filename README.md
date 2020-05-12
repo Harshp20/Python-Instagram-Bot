@@ -52,4 +52,4 @@ http://jonathansoma.com/lede/foundations-2017/classes/more-scraping/selenium/
 3. If you are facing any problems executing the source code then consider upgrading all your python packages. Upgrade your pip to the latest version using `python -m pip install --upgrade pip` and upgrade all your packages to latest versions using `pip install pip-upgrade-outdated`
 
 ## Development
-If you think you can improve and add more functionality to this Bot then feel free to clone this repository and submit your changes.
+If you want to contribute to this project and add more functionality to the Bot then feel free to _Fork_ this repository and submit your changes.
