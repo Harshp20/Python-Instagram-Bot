@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['Instabot.py'],
-             pathex=['C:\\Users\\harsh\\Desktop\\gitHub Repositories\\Instagram_Bot\\Instagram_Bot'],
+a = Analysis(['InstaBot.py'],
+             pathex=['C:\\Users\\harsh\\Desktop\\GitHub Repositories\\Instagram_Bot\\Instagram_Bot'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -23,11 +23,11 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='Instabot',
+          name='InstaBot',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True , icon='icon_instagram.ico')
+          console=True , icon='Icon_Instagram.ico')
