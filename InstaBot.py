@@ -19,7 +19,7 @@ class Bot:
         self.driver.execute_script("alert('Please check your Application console window')")
         try:
             alert= self.driver.switch_to.alert
-            time.sleep(3)
+            time.sleep(5)
             alert.accept()
         except Exception:
             pass
@@ -84,7 +84,7 @@ class Bot:
     def get_followers_list(self):
         self.go_to_my_profile()
         #Getting Followers list below
-        print('\n***Getting Followers list***')
+        print('\n***Getting Followers list***\nPlease wait...')
         self.driver.find_element_by_xpath('//a[@href= "/{}/followers/"]'.format(self.username)).click()
         time.sleep(2)
         scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]')
@@ -113,7 +113,7 @@ class Bot:
     def get_following_list(self):
         self.go_to_my_profile()
         #Getting Following list below
-        print('***Getting Following list***')
+        print('\n***Getting Following list***\nPlease wait...')
         self.driver.find_element_by_xpath('//a[@href= "/{}/following/"]'.format(self.username)).click()
         time.sleep(2)
         scrollbox= self.driver.find_element_by_xpath('/html/body/div[4]/div/div[2]')
@@ -139,6 +139,13 @@ class Bot:
 
 
     def get_unfollowers(self):
+        if len(new_list)!=0:
+            print('\n')
+            print(new_list)
+            print('\n** RESULT: ' + str(len(new_list)) + ' people are not following you back.')
+            time.sleep(2)
+            return
+
         followers_names= self.get_followers_list()  #Getting Followers list 
         following_names= self.get_following_list()  #Getting Following list 
 
@@ -516,19 +523,20 @@ class Bot:
         self.logout()
         time.sleep(3)
         new_list_contents= new_list.copy()
+        
         f= open('{}_exclusions.txt'.format(self.username), 'a+')
+        f2= open('{}.txt'.format(self.username), 'a+')
+
         check= os.path.exists('{}.txt'.format(self.username))
         if check==False:
             name_contents=[]
-        else:
-            f2= open('{}.txt'.format(self.username), 'a')
-        ########################################
+
         count=0
         for x in new_list:
             self.driver.get(self.base_url + x)
             time.sleep(2)
             self.driver.execute_script("choice= confirm('Exclude this user?')")
-            time.sleep(4)
+            time.sleep(6)
             
             try:
                 alert= self.driver.switch_to.alert
@@ -541,12 +549,9 @@ class Bot:
                 f.write(x + '\n')
             
             
-            ch= self.driver.find_element_by_tag_name('ul')
-            ch.find_elements_by_tag_name('a')
-            ch= ch.text
-            ch= ch.split('\n')
-            ch= [x.split(' ') for x in ch]
-            if 'm' in ch[1][0] or 'k' in ch[1][0] or ',' in ch[1][0]:
+            ch= self.driver.find_element_by_partial_link_text('followers').text
+            ch= ch.split(' ')
+            if 'm' in ch[0] or 'k' in ch[0] or ',' in ch[0]:
                 f2.write(x + '\n')
                 
             count+=1
