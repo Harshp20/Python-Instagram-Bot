@@ -1,4 +1,4 @@
-<h1 align="center">Instagram Bot v1.6</h1>
+<h1 align="center">Instagram Bot v1.7</h1>
 <p align="center">
 <img src="https://imgur.com/nu9qFI0.png" width='200'>
   <h3 align='center'>I am a robust, powerful and fully featured Instagram Bot that automates boring & tedious tasks on Instagram for you</h3>
