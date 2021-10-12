@@ -3,7 +3,7 @@
 <img src="https://imgur.com/nu9qFI0.png" width='200'>
   <h3 align='center'>I am a robust, powerful and fully featured Instagram Bot that automates boring & tedious tasks on Instagram for you</h3>
 </p>
-  <p align="center">⭐️ Star it | 🔱 Fork it on GitHub </p>
+  <p align="center">⭐️ Star | 🔱 Fork it on GitHub </p>
   <p align="center">
     <a href="https://github.com/timgrossmann/InstaPy/blob/master/LICENSE">
       <img src="https://img.shields.io/badge/license-GPLv3-blue.svg" />
@@ -12,9 +12,9 @@
       <img src="https://img.shields.io/badge/built%20with-Selenium-yellow" />
     </a>
     <a href="https://www.python.org/">
-    	<img src="https://img.shields.io/badge/built%20with-Python3-blueviolet" />
+    	<img src="https://img.shields.io/badge/built%20with-Python-blueviolet" />
     </a>
-      <img src='https://img.shields.io/badge/127-Stars-brightgreen'>
+      <img src='https://img.shields.io/badge/128-Stars-brightgreen'>
   <img src='https://img.shields.io/badge/23-Forks-brightgreen'>
   </p>
 <p align='center'><a href='https://github.com/Harshp20'><img  src='https://img.shields.io/badge/Coded%20By-Harsh%20Pradhan-red'></a></p>
