@@ -15,7 +15,7 @@
     	<img src="https://img.shields.io/badge/built%20with-Python-blueviolet" />
     </a>
       <img src='https://img.shields.io/badge/128-Stars-brightgreen'>
-  <img src='https://img.shields.io/badge/23-Forks-brightgreen'>
+  <img src='https://img.shields.io/badge/24-Forks-brightgreen'>
   </p>
 <p align='center'><a href='https://github.com/Harshp20'><img  src='https://img.shields.io/badge/Developed%20by-Harsh%20Pradhan-red'></a></p>
 
