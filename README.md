@@ -17,7 +17,7 @@
       <img src='https://img.shields.io/badge/128-Stars-brightgreen'>
   <img src='https://img.shields.io/badge/23-Forks-brightgreen'>
   </p>
-<p align='center'><a href='https://github.com/Harshp20'><img  src='https://img.shields.io/badge/Coded%20By-Harsh%20Pradhan-red'></a></p>
+<p align='center'><a href='https://github.com/Harshp20'><img  src='https://img.shields.io/badge/Developed%20by-Harsh%20Pradhan-red'></a></p>
 
 ## Features:
 - [x] 1. **Get Non-Followers -** See who's not following you back.
@@ -33,7 +33,7 @@
 ## IMPORTANT | Must Read Before Usage:
 1. You can select "Create Exclusions List" feature and SHOULD add only those people to the "Exclusion List" whom you want to keep following even if they ever unfollowed you. You will have to press "Yes" for people you want to exclude from the Unfollow List. If no choice is made, the particular user will be automatically excluded. You can leave popular accounts alone. The Bot will detect and automatically exclude them so you don't have to press "Yes" for every single account.
 2. If you are running "Unfollow Non-followers" feature for the first time, the Bot will go over to the account of every single person that doesn't *follow you back* and is not in your Exclusion list and learn whether they are a celebrity OR professional account. The Bot has the ability to learn about accounts. If they are, the Bot will not flag them as your *Non-follower* and also would not visit their account from the next time onwards. This will save a lot of time of yours. However, for the sake of learning, it is ***Important*** to visit all the accounts that don't follow you back and are not in your Exclusion List.
-3. The Bot will prompt the user to enter their username and password. During password entry the user will not see any letters being typed but are input invisibly. This is just for security purposes so that the person next to you does not see your password :)
+3. The Bot will prompt the user to enter their username and password. During password entry the user will not see any letters being typed but are input invisibly. This is just for security purposes.
 
 ## Prerequistes for executing Source Code
 1. Python 3 and above
