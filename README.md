@@ -22,7 +22,7 @@
 ## Features:
 - [x] 1. **Get Non-Followers -** See who's not following you back.
 - [x] 2. **Unfollow People -** Unfollows people that are not following you back. *(25 people/hour for 5 hours)* **Note:-** *This feature will skip celebrities and famous/professional accounts. If you want the Bot to skip selected users, use "Create Exclude list feature". It will also pop-up by default when "Unfollow Non-followers" is chosen.*
-- [x] 3. **Raw Unfollow -** Unfollows everybody regardless of them following you back or not. *(35 people/hour for 5 hours)*
+- [x] 3. **Raw Unfollow -** Unfollows everybody regardless of them following you back. *(35 people/hour for 5 hours)*
 - [x] 4. **Create Exclude List -** Create Exclusion List so that the Bot skips selected users. **Note :- You will have 6 seconds to either accept or reject the addition of each user to the exclusion list. If no decision is made before time out, the Bot will exclude that user from UNFOLLOW list by default. You can manage Exclusion List later.**
 - [x] 5. **Follow People -** Follows people from the *followers* list of desired profile for growth. *(35 people/hour for 5 hours)*
 - [x] 6. **Supports** wait time of *50 seconds* for accounts having 2-Factor Authentication enabled.
